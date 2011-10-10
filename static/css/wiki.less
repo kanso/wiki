@@ -1,0 +1,101 @@
+@import "bootstrap.less";
+@import "adaptive.less";
+@import "topbar.less";
+@import "secondbar.less";
+@import "comments.less";
+@import "headings.less";
+
+.editable {
+    display: block;
+    cursor: pointer;
+}
+
+.editable h1:hover,
+.editable p:hover {
+    background-color: @grayLighter;
+}
+
+.editable h1,
+.editable p {
+    display: inline-block;
+    padding: 2px 5px;
+    margin: -2px -5px;
+}
+
+#title.editable {
+    margin-bottom: 16px;
+}
+#title.editable h1 {
+    margin-bottom: 0;
+}
+
+#subtitle.editable {
+    margin-bottom: 7px;
+}
+#subtitle.editable p {
+    margin-bottom: 0;
+}
+
+#editor {
+    position: relative;
+    width: 700px;
+    height: 400px;
+}
+
+#sidebar ul {
+    list-style-type: none;
+    margin: 0 0 1em 0;
+    padding: 0;
+}
+
+#sidebar ul li {
+    display: block;
+    border-top: 1px dotted #eee;
+    padding: 5px 7px;
+    color: @grayDark;
+    cursor: pointer;
+}
+
+#sidebar ul li:hover {
+    text-decoration: none;
+    background-color: #fcfcfc;
+    padding-left: 10px;
+}
+
+#sidebar ul li.active,
+#sidebar ul li.active:hover {
+    background-color: @grayLighter;
+    font-weight: bold;
+    text-shadow: 0 1px 0 @white;
+    padding-left: 7px;
+}
+
+#secondbar .span10 {
+    position: relative;
+}
+
+#secondbar .span10 .tabs {
+    position: absolute;
+    bottom: -35px;
+    left: 600px;
+    width: 340px;
+}
+
+.tabs {
+    border-bottom: 1px solid #CCC;
+    border-bottom-color: transparent;
+}
+.tabs > li.active > a {
+    border: 1px solid #CCC;
+    border-bottom-color: transparent;
+}
+.tabs > li > a:hover {
+    border-color: #EEE #EEE #CCC;
+}
+.tabs > li.active > a:hover {
+    border-color: #DDD #DDD #CCC;
+}
+.tabs > li.active > a:hover {
+    border-bottom: 1px solid #CCC;
+    border-bottom-color: transparent;
+}

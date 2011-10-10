@@ -1,0 +1,16 @@
+{
+    "name": "kanso-widgets",
+    "version": "0.0.8",
+    "description": "Common widgets for use with the Kanso types and forms systems",
+    "modules": "kanso",
+    "dependencies": {
+        "modules": null,
+        "underscore": null,
+        "querystring": null,
+        "kanso-utils": null,
+        "kanso-sanitize": null,
+        "kanso-db": null,
+        "kanso-events": null,
+        "kanso-forms": null
+    }
+}

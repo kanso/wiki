@@ -1,0 +1,51 @@
+{#doc}
+
+<form id="edit_page_form" action="" method="POST">
+
+  <div id="secondbar">
+    <div class="container">
+      <div class="row">
+        <div class="span10">
+
+          <input type="hidden" name="title" value="{title}" />
+          <div id="title" class="editable" href="#">
+            <h1>{title}</h1>
+          </div>
+
+          <input type="hidden" name="subtitle" value="{subtitle}" />
+          <div id="subtitle" class="editable" href="#">
+            <p>{subtitle}</p>
+          </div>
+
+          {>"page_tabs.html"/}
+
+        </div>
+        <div class="span6">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="content">
+      <div class="row">
+
+        <div class="span12">
+          <div id="editor">{body}</div>
+        </div>
+{/doc}
+
+        <div id="sidebar" class="span4">
+          <ul>
+            <li class="active">Editor</li>
+            <li>Preview</li>
+          </ul>
+          <input type="submit" id="save_btn" class="btn primary" value="Save" />
+          <input type="button" id="cancel_btn" class="btn" value="Cancel" />
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</form>
