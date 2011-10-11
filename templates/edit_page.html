@@ -32,13 +32,14 @@
 
         <div class="span12">
           <div id="editor">{body}</div>
+          <div id="preview"></div>
         </div>
 {/doc}
 
         <div id="sidebar" class="span4">
           <ul>
-            <li class="active">Editor</li>
-            <li>Preview</li>
+            <li id="editor_btn" class="active">Editor</li>
+            <li id="preview_btn">Preview</li>
           </ul>
           <input type="submit" id="save_btn" class="btn primary" value="Save" />
           <input type="button" id="cancel_btn" class="btn" value="Cancel" />
