@@ -17,12 +17,13 @@
         "properties": "0.0.8",
         "attachments": null,
         "settings": null,
+        "underscore": null,
         "kanso-core": null,
         "kanso-sanitize": null,
         "kanso-templates": null,
         "kanso-types": null,
         "app-session": null,
-        "app-comments": null,
+        "app-comments": "0.0.2",
         "datelib": "0.0.1",
         "less-precompiler": null
     }
