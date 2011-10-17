@@ -8,7 +8,8 @@
 
 p {
   #font > .shorthand(normal,@basefont,@baseline);
-  margin-bottom: @baseline / 2;
+  margin-bottom: @baseline / 3 * 2;
+  //margin-bottom: @baseline;
   small {
     font-size: @basefont - 2;
     color: @grayDark;
@@ -27,7 +28,8 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 h1 {
-  margin-bottom: @baseline;
+  margin-bottom: @baseline - 3;
+  //margin-bottom: @baseline - 7;
   font-size: 30px;
   line-height: @baseline * 2;
   small {
@@ -35,34 +37,45 @@ h1 {
   }
 }
 h2 {
-  font-size: 24px;
-  line-height: @baseline * 2;
+  //font-size: 24px;
+  font-size: 21px;
+  //padding-top: @baseline / 2;
+  //margin-bottom: @baseline / 3;
+  //line-height: @baseline * 3;
+  line-height: @baseline * 4;
   small {
     font-size: 14px;
   }
 }
 h3, h4, h5, h6 {
-  line-height: @baseline * 2;
+  line-height: @baseline * 3;
 }
 h3 {
-  font-size: 18px;
+  //font-size: 18px;
+  font-size: 16px;
+  color: @grayDark;
   small {
     font-size: 14px;
   }
 }
 h4 {
-  font-size: 16px;
+  //font-size: 16px;
+  font-size: 14px;
+  color: @grayDark;
   small {
     font-size: 12px;
   }
 }
 h5 {
-  font-size: 14px;
+  //font-size: 14px;
+  font-size: 13px;
+  color: @grayLight;
+  text-transform: uppercase;
 }
 h6 {
   font-size: 13px;
   color: @grayLight;
-  text-transform: uppercase;
+  //text-transform: uppercase;
 }
 
 
