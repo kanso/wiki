@@ -25,6 +25,7 @@
         "app-session": null,
         "app-comments": "0.0.2",
         "datelib": "0.0.1",
-        "less-precompiler": null
+        "less-precompiler": null,
+        "showdown": "0.0.1"
     }
 }

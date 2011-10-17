@@ -1,15 +1,14 @@
 <div id="secondbar">
   <div class="container">
     <div class="row">
-      <div class="span12">
-        <h1>{page}</h1>
+      <div class="span10">
+        <h1>{page_title}</h1>
         <p>
-          There is currently no text in this page. Would you like to
-          <a href="{baseURL}/_add/{page|uc}">add content</a> for <strong>{page}</strong>?
+          There is currently no text in this page.
         </p>
+        {>"page_tabs.html"/}
       </div>
-      <div class="span4">
-        <a href="{baseURL}/_add/{page|uc}" class="btn editbtn">Add page</a>
+      <div class="span6">
       </div>
     </div>
   </div>
@@ -21,6 +20,9 @@
 
       <div class="span12">
         <div class="page_body">
+          The wiki does not have a page matching this exact name yet.
+          Please click on the <a href="{baseURL}/_edit/{pageid|uc}">edit tab</a>
+          to provide some content.
         </div>
       </div>
 

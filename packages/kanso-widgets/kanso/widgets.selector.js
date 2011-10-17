@@ -12,8 +12,10 @@
  */
 
 var core = require('./widgets.core'),
-    db = require('kanso/db'),
+    db = require('db'),
+    settings = require('settings/root'),
     sanitize = require('kanso/sanitize'),
+    kanso_core = require('kanso/core'),
     utils = require('kanso/utils'),
     events = require('kanso/events'),
     _ = require('underscore')._;
@@ -63,6 +65,15 @@ var h = sanitize.escapeHtml,
  *          document. Set this option to true (the default) to include
  *          all fields from the selected document. If useJSON is false,
  *          then this option is ignored and treated as if it were false.
+ *      </td>
+ *   </tr>
+ *   <tr>
+ *      <td class="name">optionDesc</td>
+ *      <td class="type">Function</td>
+ *      <td class="description">
+ *          Pass in another function to help with rendering of the &lt;option&gt;
+ *          html element.  The only param to this function is the row that is
+ *          fetched from the view. This is the text displayed in the select box. 
  *      </td>
  *   </tr>
  * </table>
@@ -179,7 +190,9 @@ exports.documentSelector = function (_options) {
         var select_elt =
             this.discoverSelectionElement(container_elt);
 
-        db.getView(
+        var appdb = db.use(options.db || kanso_core.getDBURL());
+        appdb.getView(
+            options.appname || settings.name,
             options.viewName,
             { include_docs: options.storeEntireDocument },
             { useCache: true, db: options.db, appName: options.appName },
@@ -218,7 +231,11 @@ exports.documentSelector = function (_options) {
                             }
                             /* Insert new <option> */
                             option_elt.val(v);
-                            option_elt.text(r.value);
+                            if (options.optionDesc) {
+                                option_elt.text(options.optionDesc(r));
+                            } else {
+                                option_elt.text(r.value);
+                            }
                             option_elt.attr('rel', r.id);
                             select_elt.append(option_elt);
                         })

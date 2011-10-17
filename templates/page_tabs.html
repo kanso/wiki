@@ -1,8 +1,8 @@
 {#page_tabs}
 <ul class="tabs">
-  <li{?page} class="active"{/page}><a href="{baseURL}/{_id|uc}">Page</a></li>
-  <li{?edit} class="active"{/edit}><a href="{baseURL}/_edit/{_id|uc}">Edit</a></li>
-  <li{?discussion} class="active"{/discussion}><a href="{baseURL}/_discuss/{_id|uc}">Discussion</a></li>
-  <li{?history} class="active"{/history}><a href="#">History</a></li>
+  <li{?page} class="active"{/page}><a href="{baseURL}/{pageid|uc}">Page</a></li>
+  <li{?edit} class="active"{/edit}><a href="{baseURL}/_edit/{pageid|uc}">Edit</a></li>
+  <li{?discussion} class="active"{/discussion}><a href="{baseURL}/_discuss/{pageid|uc}">Discussion</a></li>
+  <li{?history} class="active"{/history}><a href="{baseURL}/_history/{pageid|uc}">History</a></li>
 </ul>
 {/page_tabs}

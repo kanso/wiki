@@ -16,10 +16,10 @@
 
 var settings = require('settings/root'), // module auto-generated
     url = require('url'),
-    db = require('kanso/db'),
+    db = require('db'),
     utils = require('kanso/utils'),
-    session = require('kanso/session'),
-    cookies = require('kanso/cookies'),
+    session = require('session'),
+    cookies = require('cookies'),
     events = require('kanso/events'),
     urlParse = url.parse,
     urlFormat = url.format,
@@ -111,16 +111,10 @@ if (typeof getRow === 'undefined' && typeof window !== 'undefined') {
     };
 }
 if (typeof start === 'undefined' && typeof window !== 'undefined') {
-    window.start = function (options) {
-        //console.log('start');
-        //console.log(options);
-    };
+    window.start = function (options) {};
 }
 if (typeof send === 'undefined' && typeof window !== 'undefined') {
-    window.send = function (options) {
-        //console.log('send');
-        //console.log(options);
-    };
+    window.send = function (options) {};
 }
 if (typeof log === 'undefined' && typeof window !== 'undefined') {
     window.log = function () {
@@ -159,20 +153,12 @@ function loadDeps(deps) {
         }
         if (s) {
             if (s.load) {
-                /*
-                log('loading ' + k);
-                var a = require(s.load);
-                log('shows before: ' + _.keys(exports.app.shows || {}));
-                _.extend(exports.app, a);
-                // TODO: this is blowing away the previous show functions
-                // instead of extending the app module itself, keep a local
-                // variable containing all show functions (same for list,
-                // update, and anything else used by kanso core)
-                log('shows after: ' + _.keys(exports.app.shows || {}));
-                */
                 var a = require(s.load);
                 // should these always be concatenated?
+                // TODO: this behaves differently to the build steps which only
+                // use the rewrites from the root package
                 exports._rewrites = exports._rewrites.concat(a.rewrites || []);
+
                 // TODO: detect conflicting properties as the merge build step
                 // would report them
                 _.extend(exports._shows, a.shows);
@@ -232,6 +218,8 @@ exports.init = function () {
                 // target?
                 exports.setURL(method, url, data);
             }
+            ev.preventDefault();
+            return false;
         });
 
         $('a').live('click', function (ev) {
@@ -257,7 +245,7 @@ exports.init = function () {
         });
 
         window.onpopstate = function (ev) {
-            var url = exports.getURL();
+            var url = exports.getAppURL();
             var state = ev.state || {};
             var method = state.method || 'GET';
             var data = state.data;
@@ -290,7 +278,6 @@ exports.init = function () {
                 curr.timestamp === state.timestamp &&
                 (curr.method || 'GET') === (state.method || 'GET')) {
                 // duplicate popstate event
-                // console.log('duplicate popstate event');
                 return;
             }
             exports.current_state = {
@@ -315,7 +302,7 @@ exports.init = function () {
         //
         // - perhaps use cookies to pass the method and data back to the client?
         //
-        exports.handle('GET', exports.getURL(), {});
+        exports.handle('GET', exports.getAppURL(), {});
     }
 
     // TODO: should this be after userCtx is available??
@@ -534,8 +521,6 @@ exports.createRequest = function (method, url, data, match, callback) {
  */
 
 exports.handleResponse = function (req, res) {
-    //console.log('response');
-    //console.log(res);
     if (req && typeof res === 'object') {
         if (res.headers) {
             if (res.headers['Set-Cookie']) {
@@ -582,7 +567,8 @@ exports.runShowBrowser = function (req, name, docid, callback) {
     events.emit('beforeResource', info);
 
     if (docid) {
-        db.getDoc(docid, req.query, function (err, doc) {
+        var appdb = db.use(exports.getDBURL(req));
+        appdb.getDoc(docid, req.query, function (err, doc) {
             var current_req = (utils.currentRequest() || {});
             if (current_req.uuid === req.uuid) {
                 if (err) {
@@ -773,7 +759,8 @@ exports.runUpdateBrowser = function (req, name, docid, callback) {
     events.emit('beforeResource', info);
 
     if (docid) {
-        db.getDoc(docid, req.query, function (err, doc) {
+        var appdb = db.use(exports.getDBURL(req));
+        appdb.getDoc(docid, req.query, function (err, doc) {
             var current_req = (utils.currentRequest() || {});
             if (current_req.uuid === req.uuid) {
                 if (err) {
@@ -867,7 +854,8 @@ exports.runUpdate = function (fn, doc, req, cb) {
     }
     var r = [val ? val[0]: null, res];
     if (req.client && r[0]) {
-        db.saveDoc(r[0], function (err, res) {
+        var appdb = db.use(exports.getDBURL(req));
+        appdb.saveDoc(r[0], function (err, res) {
             if (err) {
                 return cb(err);
             }
@@ -929,7 +917,8 @@ exports.runListBrowser = function (req, name, view, callback) {
     if (view) {
         // update_seq used in head parameter passed to list function
         req.query.update_seq = true;
-        db.getView(view, req.query, function (err, data) {
+        var appdb = db.use(exports.getDBURL(req));
+        appdb.getView(settings.name, view, req.query, function (err, data) {
             var current_req = (utils.currentRequest() || {});
             if (current_req.uuid === req.uuid) {
                 if (err) {
@@ -939,8 +928,6 @@ exports.runListBrowser = function (req, name, view, callback) {
                     return data.rows.shift();
                 };
                 start = function (res) {
-                    //console.log('start');
-                    //console.log(res);
                     exports.handleResponse(req, res);
                 };
                 var head = exports.createHead(data);
@@ -1074,8 +1061,6 @@ exports.handle = function (method, url, data) {
             if (err) {
                 throw err;
             }
-            //console.log(req);
-
             var msg = method + ' ' + url + ' -> ' +
                 JSON.stringify(req.path.join('/')) + ' ' +
                 JSON.stringify(req.query);
@@ -1130,7 +1115,7 @@ exports.handle = function (method, url, data) {
                 console.log('Unknown rewrite target: ' + req.path.join('/'));
                 if (!utils.initial_hit) {
                     var newurl = exports.getBaseURL() + url;
-                    console.log('opening new window for: ' + newurl);
+                    console.log('Opening new window for: ' + newurl);
                     // reset url
                     window.history.go(-1);
                     // open in new window, since this page is unlikely to have
@@ -1224,9 +1209,25 @@ exports.setURL = function (method, url, data) {
 
 exports.getBaseURL = utils.getBaseURL;
 
+exports.getDBURL = function (req) {
+    return exports.getBaseURL(req) + '/_db';
+};
+
 
 /**
  * Gets the current app-level URL (without baseURL prefix).
+ *
+ * @name getAppURL()
+ * @returns {String}
+ * @api public
+ */
+
+exports.getAppURL = function () {
+    return exports.appPath(exports.getURL());
+};
+
+/**
+ * Gets the window location coerced to a string (for IE)
  *
  * @name getURL()
  * @returns {String}
@@ -1234,32 +1235,9 @@ exports.getBaseURL = utils.getBaseURL;
  */
 
 exports.getURL = function () {
-    var re = new RegExp('\\/_rewrite(.*)$');
-
-    var locstr = '' + window.location,
-        loc = urlParse(locstr),
-        match = re.exec(loc.pathname);
-
-    var baseURL = exports.getBaseURL();
-
-    if (match) {
-        var newurl = {
-            pathname: match[1] || '/',
-            hash: loc.hash
-        };
-        if (loc.search) {
-            newurl.search = loc.search;
-        }
-        return urlFormat(newurl) || '/';
-    }
-    else if (locstr.substr(0, baseURL.length) === baseURL) {
-        return locstr.substr(baseURL.length) || '/';
-    }
-    else if (loc.pathname.substr(0, baseURL.length) === baseURL) {
-        return loc.pathname.substr(baseURL.length) || '/';
-    }
-    return locstr || '/';
+    return '' + window.location;
 };
+
 
 /**
  * Tests if two urls are of the same origin. Accepts parsed url objects
@@ -1325,14 +1303,14 @@ exports.appPath = function (p) {
         }
         else {
             // not same origin, return original full path
-            return p;
+            return p || '/';
         }
     }
     var base = exports.getBaseURL();
     if (p.substr(0, base.length) === base) {
-        return p.substr(base.length);
+        return p.substr(base.length) || '/';
     }
-    return p;
+    return p || '/';
 };
 
 
@@ -1348,5 +1326,17 @@ exports.appPath = function (p) {
 
 exports.isAppURL = function (url) {
     // coerce window.location to a real string in IE
-    return exports.sameOrigin(url, '' + window.location);
+    var loc = '' + window.location;
+    var base = exports.getBaseURL();
+    if (!exports.sameOrigin(url, loc)) {
+        return false;
+    }
+    var p = urlParse(url).pathname;
+    if (p.length < base.length) {
+        return false;
+    }
+    if (p.length === base.length) {
+        return p === base;
+    }
+    return p.substr(0, base.length + 1) === base + '/';
 };
