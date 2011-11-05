@@ -4,9 +4,9 @@
     "description": "Basic wiki app",
     "load": "lib/app",
     "modules": "lib",
-    "templates": "templates",
     "attachments": "static",
-    "base_template": "base.html",
+    "duality": { "base_template": "base.html" },
+    "dust": { "templates": "templates" },
     "less": {
         "compress": true,
         "compile": "static/css/wiki.less",
@@ -18,14 +18,15 @@
         "attachments": null,
         "settings": null,
         "underscore": null,
-        "kanso-core": null,
-        "kanso-sanitize": null,
-        "kanso-templates": null,
-        "kanso-types": null,
-        "app-session": null,
-        "app-comments": "0.0.2",
+        "duality": null,
+        "sanitize": null,
+        "couchtypes": null,
+        "duality-contrib-session": null,
+        "duality-contrib-comments": "0.0.2",
         "datelib": "0.0.1",
         "less-precompiler": null,
-        "showdown": "0.0.1"
+        "showdown": "0.0.1",
+        "dust": null,
+        "duality-dust": null
     }
 }
