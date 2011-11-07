@@ -1,15 +1,15 @@
-<form id="app_comments_form" method="POST" action="">
+<form id="duality_contrib_comments_form" method="POST" action="">
   <input type="hidden" name="target" value="{comments_target}" />
   <div class="field">
-    <textarea id="app_comments_text" name="text"></textarea>
+    <textarea id="duality_contrib_comments_text" name="text"></textarea>
   </div>
   <div class="actions">
-    <input id="app_comments_add" class="btn primary" type="submit" value="Add comment" />
+    <input id="duality_contrib_comments_add" class="btn primary" type="submit" value="Add comment" />
   </div>
 </form>
 
 <script type="text/javascript">
   if (typeof require !== 'undefined') {
-    require('app-comments/ui').bind('#app_comments_form');
+    require('duality-contrib-comments/ui').bind('#duality_contrib_comments_form');
   }
 </script>

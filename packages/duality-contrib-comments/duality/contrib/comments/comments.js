@@ -17,7 +17,7 @@ exports.get = function (target, /*optional*/options, callback) {
         startkey = [target, {}];
         endkey = [target];
     }
-    var appdb = db.use(kanso_core.getDBURL());
+    var appdb = db.use(duality.getDBURL());
     appdb.getView(settings.name, 'duality-contrib-comments:comments_by_target',
         _.defaults(options, {
             limit: 100,
@@ -40,7 +40,7 @@ exports.getByUser = function (user, /*options*/options, callback) {
         startkey = [user, {}];
         endkey = [user];
     }
-    var appdb = db.use(kanso_core.getDBURL());
+    var appdb = db.use(duality.getDBURL());
     appdb.getView(settings.name, 'duality-contrib-comments:comments_by_user',
         _.defaults(options, {
             limit: 100,
@@ -75,7 +75,7 @@ exports.addToPage = function (req, target, /*optional*/options, callback) {
                 // TODO: actually use dustjs to render this as a template?
                 var l = options.user_link.replace('{user}', r.doc.user);
                 l = options.user_link.replace('{user|uc}', r.doc.user);
-                l = l.replace('{baseURL}', kanso_core.getBaseURL());
+                l = l.replace('{baseURL}', duality.getBaseURL());
                 r.doc.user_link = l;
             }
             return r.doc;
@@ -111,14 +111,14 @@ exports.addUserCommentsToPage = function (req, user, /*opt*/options, callback) {
                 // TODO: actually use dustjs to render this as a template?
                 var l = options.user_link.replace('{user}', r.doc.user);
                 l = l.replace('{user|uc}', r.doc.user);
-                l = l.replace('{baseURL}', kanso_core.getBaseURL());
+                l = l.replace('{baseURL}', duality.getBaseURL());
                 r.doc.user_link = l;
             }
             if (options.target_link) {
                 // TODO: actually use dustjs to render this as a template?
                 var t = options.target_link.replace('{target}', r.doc.target);
                 t = t.replace('{target|uc}', r.doc.target);
-                t = t.replace('{baseURL}', kanso_core.getBaseURL());
+                t = t.replace('{baseURL}', duality.getBaseURL());
                 r.doc.target_link = t;
             }
             return r.doc;
@@ -140,7 +140,7 @@ exports.add = function (target, user, text, callback) {
         text: text,
         time: datelib.ISODateString()
     }
-    var appdb = db.use(kanso_core.getDBURL());
+    var appdb = db.use(duality.getDBURL());
     appdb.saveDoc(doc, callback);
 };
 
