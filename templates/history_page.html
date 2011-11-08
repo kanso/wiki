@@ -1,0 +1,46 @@
+{#doc}
+<div id="secondbar">
+  <div class="container">
+    <div class="row">
+      <div class="span10">
+        <h1>{title}</h1>
+        <p>{subtitle}</p>
+        {>"page_tabs.html"/}
+      </div>
+      <div class="span6">
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div id="content">
+    <div class="row">
+
+      <div class="span12">
+        <div id="history_diff">
+          Loading...
+        </div>
+      </div>
+
+      <div id="sidebar" class="span4">
+        <h4>History</h4>
+        <ul id="history_list">
+        {#history}
+          <li class="history_entry{?selected} active{/selected}">
+            <a href="{baseURL}/_history/{pageid|uc}/{_id|uc}">
+              <strong class="user">{user}</strong>
+              <span class="time">{pptime}</span>
+              {?comment}
+                <p>{comment}</p>
+              {/comment}
+            </a>
+          </li>
+        {/history}
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+{/doc}

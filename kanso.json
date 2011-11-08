@@ -28,6 +28,7 @@
         "showdown": "0.0.1",
         "dust": null,
         "duality-dust": null,
-        "base64": null
+        "base64": null,
+        "async": null
     }
 }
