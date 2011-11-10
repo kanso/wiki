@@ -36,8 +36,15 @@
     margin-bottom: 0;
 }
 
-#editor {
+#editor_container {
     position: relative;
+    width: 700px;
+    height: 400px;
+}
+#editor {
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 700px;
     height: 400px;
     background-color: whiteSmoke;
@@ -49,6 +56,38 @@
     word-wrap: break-word;
     margin: 0 0 18px 0;
     .border-radius(3px)
+}
+
+#editor_overlay {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 701px;
+    height: 400px;
+}
+#editor_overlay.active {
+    display: block;
+}
+#editor_overlay_bg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: whiteSmoke;
+    opacity: 0.75;
+    z-index: 1000;
+}
+#editor_overlay_login_message {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2000;
+    padding: 2em 3em;
+    border: 1px solid #ccc;
+    background: #fcfcfc;
+    .border-radius(5px);
 }
 
 #editor .ace_content {
