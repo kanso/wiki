@@ -39,16 +39,18 @@
           <p>There are no comments for this page</p>
           {/comments}
         </div>
-        <div id="comment_form_login_message">
-          Please login to comment on this page
-        </div>
-        <form id="comment_form" action="" method="POST">
-          <textarea id="comment_textarea" name="comment"></textarea>
-          <div class="comment_actions">
-            <input class="btn" id="clear_comment" type="reset" value="Clear" />
-            <input class="btn primary" id="add_comment" type="submit" value="Add comment" />
+        <div id="comment_form_container">
+          <div id="comment_form_login_message">
+            Please login to comment on this page
           </div>
-        </form>
+          <form id="comment_form" action="" method="POST">
+            <textarea id="comment_textarea" name="comment"></textarea>
+            <div class="comment_actions">
+              <input class="btn" id="clear_comment" type="reset" value="Clear" />
+              <input class="btn primary" id="add_comment" type="submit" value="Add comment" />
+            </div>
+          </form>
+        </div>
       </div>
 
       <div id="sidebar" class="span4">
