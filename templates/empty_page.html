@@ -34,7 +34,7 @@
 
       <div id="sidebar" class="span4">
         {sidebar|s}
-        <p><a href="{baseURL}/_edit/sidebar">Edit sidebar</a></p>
+        <p><a class="edit_sidebar{?logged_in}{:else} disabled{/logged_in}" href="{baseURL}/_edit/sidebar">Edit sidebar</a></p>
       </div>
 
     </div>
