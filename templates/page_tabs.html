@@ -5,6 +5,6 @@
     <a href="{baseURL}/_edit/{pageid|uc}">Edit</a>
   </li>
   <li class="discussion_page{?discussion_page} active{/discussion_page}"><a href="{baseURL}/_discuss/{pageid|uc}">Discussion</a></li>
-  <li class="history_page{?history_page} active{/history_page}"><a href="{baseURL}/_history/{pageid|uc}">History</a></li>
+  <li class="history_page{?history_page} active{/history_page}{?empty_doc} disabled{/empty_doc}"><a href="{baseURL}/_history/{pageid|uc}">History</a></li>
 </ul>
 {/page_tabs}
