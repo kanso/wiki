@@ -29,7 +29,7 @@
             {#comments}
             <li class="{type}">
               <strong class="user">{user}</strong>
-              {?is_edit}<span class="edited">edited the page</span>{/is_edit}
+              {?is_edit}<a class="edited" href="{baseURL}/_history/{pageid}/{_id}">edited the page</a>{/is_edit}
               <span class="time">{pptime}</span>
               {?comment}<div class="comment">{comment}</div>{/comment}
             </li>
