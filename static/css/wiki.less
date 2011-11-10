@@ -165,3 +165,49 @@ del {
 #history_list li.active .time {
     font-weight: normal;
 }
+
+#discussion {
+    position: relative;
+    width: 684px;
+    background-color: whiteSmoke;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin: 0 0 18px 0;
+    .border-radius(3px);
+    padding: 5px 7px;
+}
+
+#discussion_list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+#discussion_list li {
+    margin: 10px 0;
+}
+#discussion_list li.edit {
+    background-color: #eee;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 10px -7px;
+    padding: 5px 7px;
+    text-shadow: 0 1px 0 @white;
+}
+#discussion_list li.edit .comment {
+    color: #999;
+    font-size: 12px;
+}
+
+#comment_textarea {
+    width: 690px;
+    height: 4em;
+    margin-bottom: 7px;
+}
+
+#comment_form .comment_actions {
+    text-align: right;
+}
+
+#participants {
+    margin-top: 0 !important;
+}

@@ -22,7 +22,6 @@
         "sanitize": null,
         "couchtypes": null,
         "duality-contrib-session": null,
-        "duality-contrib-comments": ">=0.0.3",
         "datelib": "0.0.1",
         "less-precompiler": null,
         "showdown": "0.0.1",
