@@ -29,7 +29,7 @@
         "less-precompiler": null,
         "showdown": "0.0.1",
         "handlebars": null,
-        "handlebars-helpers": null,
+        "handlebars-helpers": "0.0.2",
         "duality-handlebars": null,
         "base64": null,
         "async": null
