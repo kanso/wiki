@@ -2,11 +2,11 @@
   <div class="container">
     <div class="row">
       <div class="span10">
-        <h1>{page_title}</h1>
+        <h1>{{page_title}}</h1>
         <p>
           There is currently no text in this page.
         </p>
-        {>"page_tabs.html"/}
+        {{{include "page_tabs.html"}}}
       </div>
       <div class="span6">
       </div>
@@ -23,18 +23,18 @@
           <h3>Sorry, this page is empty</h3>
           <p>
             The wiki does not have a page matching this exact name yet.
-            Please click on the <a href="{baseURL}/_edit/{pageid|uc}">edit tab</a>
+            Please click on the <a href="{{baseURL}}/_edit/{{uc pageid}}">edit tab</a>
             to provide some content.
           </p>
           <p>
-            <a href="{baseURL}/">Back to home</a>
+            <a href="{{baseURL}}/">Back to home</a>
           </p>
         </div>
       </div>
 
       <div id="sidebar" class="span4">
-        {sidebar|s}
-        <p><a class="edit_sidebar{?logged_in}{:else} disabled{/logged_in}" href="{baseURL}/_edit/sidebar">Edit sidebar</a></p>
+        {{{sidebar}}}
+        <p><a class="edit_sidebar{{#unless logged_in}} disabled{{/unless}}" href="{{baseURL}}/_edit/sidebar">Edit sidebar</a></p>
       </div>
 
     </div>

@@ -6,7 +6,10 @@
     "modules": "lib",
     "attachments": "static",
     "duality": { "base_template": "base.html" },
-    "dust": { "templates": "templates" },
+    "handlebars": {
+        "all_partials": true,
+        "templates": "templates"
+    },
     "less": {
         "compress": true,
         "compile": "static/css/wiki.less",
@@ -21,12 +24,13 @@
         "duality": null,
         "sanitize": null,
         "couchtypes": null,
-        "duality-contrib-session": null,
+        "duality-contrib-session-hb": null,
         "datelib": "0.0.1",
         "less-precompiler": null,
         "showdown": "0.0.1",
-        "dust": null,
-        "duality-dust": null,
+        "handlebars": null,
+        "handlebars-helpers": null,
+        "duality-handlebars": null,
         "base64": null,
         "async": null
     }

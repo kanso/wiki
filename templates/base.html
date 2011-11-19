@@ -2,37 +2,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"> 
   <head> 
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
-    <link rel="stylesheet" type="text/css" href="{baseURL}/static/css/hljs_javascript.css" />
-    <link rel="stylesheet" type="text/css" href="{baseURL}/static/css/wiki.css" />
-    <title>{title}</title> 
+    <link rel="stylesheet" type="text/css" href="{{baseURL}}/static/css/hljs_javascript.css" />
+    <link rel="stylesheet" type="text/css" href="{{baseURL}}/static/css/wiki.css" />
+    <title>{{title}}</title> 
   </head> 
   <body> 
     <div id="topbar">
-      <img id="logo" src="{baseURL}/static/img/kanso_topbar_logo.png" alt="Kanso" />
+      <img id="logo" src="{{baseURL}}/static/img/kanso_topbar_logo.png" alt="Kanso" />
       <ul id="topnav">
-        <li><a href="{baseURL}">Home</a></li>
-        <li><a href="{baseURL}">Tools</a></li>
+        <li><a href="{{baseURL}}">Home</a></li>
+        <li><a href="{{baseURL}}">Tools</a></li>
         <li><a href="/packages">Packages</a></li>
-        <li class="active"><a href="{baseURL}">Docs</a></li>
-        <li><a href="{baseURL}">Framework</a></li>
+        <li class="active"><a href="{{baseURL}}">Docs</a></li>
+        <li><a href="{{baseURL}}">Framework</a></li>
       </ul>
-      {>"duality-contrib-session/session.html"/}
+      {{{include "duality-contrib-session/session.html"}}}
     </div>
     <div id="content">
-      {content|s}
+      {{{content}}}
     </div>
-    <script type="text/javascript" src="{baseURL}/static/js/jquery-1.5.2.min.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/json2.js"></script>
-    <script type="text/javascript" src="{baseURL}/modules.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/ace/ace.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/ace/mode-markdown3.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/ace/theme-textmate.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/highlight/highlight.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/highlight/languages/javascript.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/highlight/languages/bash.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/highlight/languages/diff.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/highlight/languages/ini.js"></script>
-    <script type="text/javascript" src="{baseURL}/static/js/highlight/languages/xml.js"></script>
-    <script type="text/javascript" src="{baseURL}/duality.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/jquery-1.5.2.min.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/json2.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/modules.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/ace/ace.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/ace/mode-markdown3.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/ace/theme-textmate.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/highlight/highlight.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/highlight/languages/javascript.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/highlight/languages/bash.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/highlight/languages/diff.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/highlight/languages/ini.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/static/js/highlight/languages/xml.js"></script>
+    <script type="text/javascript" src="{{baseURL}}/duality.js"></script>
   </body>
 </html>

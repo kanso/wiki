@@ -1,11 +1,10 @@
-{#doc}
 <div id="secondbar">
   <div class="container">
     <div class="row">
       <div class="span10">
-        <h1>{title}</h1>
-        <p>{subtitle}</p>
-        {>"page_tabs.html"/}
+        <h1>{{doc.title}}</h1>
+        <p>{{doc.subtitle}}</p>
+        {{{include "page_tabs.html"}}}
       </div>
       <div class="span6">
       </div>
@@ -26,21 +25,20 @@
       <div id="sidebar" class="span4">
         <h4>History</h4>
         <ul class="menu" id="history_list">
-        {#history}
-          <li class="history_entry{?selected} active{/selected}">
-            <a href="{baseURL}/_history/{pageid|uc}/{_id|uc}">
-              <strong class="user">{user}</strong>
-              <span class="time">{pptime}</span>
-              {?comment}
-              <p class="comment">{comment}</p>
-              {/comment}
+        {{#each doc.history}}
+          <li class="history_entry{{#if selected}} active{{/if}}">
+            <a href="{{baseURL}}/_history/{{uc ../pageid}}/{{uc _id}}">
+              <strong class="user">{{user}}</strong>
+              <span class="time">{{pptime}}</span>
+              {{#if comment}}
+              <p class="comment">{{comment}}</p>
+              {{/if}}
             </a>
           </li>
-        {/history}
+        {{/each}}
         </ul>
       </div>
 
     </div>
   </div>
 </div>
-{/doc}

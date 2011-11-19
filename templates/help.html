@@ -75,7 +75,7 @@
           <p>
             To edit the sidebar, click the edit link at the bottom of the sidebar
             when viewing a page. Or visit
-            <a href="{baseURL}/_edit/sidebar">/_edit/sidebar</a> directly.
+            <a href="{{baseURL}}/_edit/sidebar">/_edit/sidebar</a> directly.
           </p>
 
           <h3 id="page_history">Page History</h3>
@@ -829,8 +829,8 @@ _   underscore
       </div>
 
       <div id="sidebar" class="span4">
-        {sidebar|s}
-        <p><a class="edit_sidebar{?logged_in}{:else} disabled{/logged_in}" href="{baseURL}/_edit/sidebar">Edit sidebar</a></p>
+        {{{sidebar}}}
+        <p><a class="edit_sidebar{{#unless logged_in}} disabled{{/unless}}" href="{{baseURL}}/_edit/sidebar">Edit sidebar</a></p>
       </div>
 
     </div>

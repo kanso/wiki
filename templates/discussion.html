@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row">
       <div class="span10">
-        <h1>{page_title}</h1>
+        <h1>{{page_title}}</h1>
         <p>
-        {?page_subtitle}
-          {page_subtitle}
-        {:else}
+        {{#if page_subtitle}}
+          {{page_subtitle}}
+        {{else}}
           There is currently no text in this page.
-        {/page_subtitle}
+        {{/if}}
         </p>
-        {>"page_tabs.html"/}
+        {{{include "page_tabs.html"}}}
       </div>
       <div class="span6">
       </div>
@@ -24,20 +24,20 @@
 
       <div class="span12">
         <div id="discussion">
-          {?comments}
+          {{#if comments}}
           <ul id="discussion_list">
-            {#comments}
-            <li class="{type}">
-              <strong class="user">{user}</strong>
-              {?is_edit}<a class="edited" href="{baseURL}/_history/{pageid}/{_id}">edited the page</a>{/is_edit}
-              <span class="time">{pptime}</span>
-              {?comment}<div class="comment">{comment}</div>{/comment}
+            {{#each comments}}
+            <li class="{{type}}">
+              <strong class="user">{{user}}</strong>
+              {{#if is_edit}}<a class="edited" href="{{baseURL}}/_history/{{uc pageid}}/{{uc _id}}">edited the page</a>{{/if}}
+              <span class="time">{{pptime}}</span>
+              {{#if comment}}<div class="comment">{{comment}}</div>{{/if}}
             </li>
-            {/comments}
+            {{/each}}
           </ul>
-          {:else}
+          {{else}}
           <p>There are no comments for this page</p>
-          {/comments}
+          {{/if}}
         </div>
         <div id="comment_form_container">
           <div id="comment_form_login_message">
@@ -55,15 +55,15 @@
 
       <div id="sidebar" class="span4">
         <h4>Participating users</h4>
-        {?participants}
+        {{#if participants}}
         <ul id="participants" class="menu">
-          {#participants}
-          <li><a href="{baseURL}/_user/{.|uc}">{.}</a></li>
-          {/participants}
+          {{#each participants}}
+          <li><a href="{{baseURL}}/_user/{{uc this}}">{{this}}</a></li>
+          {{/each}}
         </ul>
-        {:else}
+        {{else}}
         <p>No users are participating in this discussion</p>
-        {/participants}
+        {{/if}}
       </div>
 
     </div>

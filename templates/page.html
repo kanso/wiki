@@ -1,11 +1,10 @@
-{#doc}
 <div id="secondbar">
   <div class="container">
     <div class="row">
       <div class="span10">
-        <h1>{title}</h1>
-        <p>{subtitle}</p>
-        {>"page_tabs.html"/}
+        <h1>{{doc.title}}</h1>
+        <p>{{doc.subtitle}}</p>
+        {{{include "page_tabs.html"}}}
       </div>
       <div class="span6">
       </div>
@@ -19,16 +18,15 @@
 
       <div class="span12">
         <div class="page_body">
-          {body_html|s}
+          {{{doc.body_html}}}
         </div>
       </div>
 
       <div id="sidebar" class="span4">
-        {sidebar|s}
-        <p><a class="edit_sidebar{?logged_in}{:else} disabled{/logged_in}" href="{baseURL}/_edit/sidebar">Edit sidebar</a></p>
+        {{{sidebar}}}
+        <p><a class="edit_sidebar{{#unless logged_in}} disabled{{/unless}}" href="{{baseURL}}/_edit/sidebar">Edit sidebar</a></p>
       </div>
 
     </div>
   </div>
 </div>
-{/doc}
