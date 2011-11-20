@@ -22,6 +22,9 @@ var h = sanitize.escapeHtml;
 
 var exports = module.exports = new events.EventEmitter();
 
+// set a high listener limit since there may be one for each field
+exports.setMaxListeners(1000);
+
 
 /**
  * Generates a script tag that fires the event named {name}.
