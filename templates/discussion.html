@@ -29,7 +29,7 @@
             {{#each comments}}
             <li class="{{type}}">
               <strong class="user">{{user}}</strong>
-              {{#if is_edit}}<a class="edited" href="{{baseURL}}/_history/{{uc pageid}}/{{uc _id}}">edited the page</a>{{/if}}
+              {{#if is_edit}}<a class="edited" href="{{baseURL}}/_history/{{uc ../../pageid}}/{{uc _id}}">edited the page</a>{{/if}}
               <span class="time">{{pptime}}</span>
               {{#if comment}}<div class="comment">{{comment}}</div>{{/if}}
             </li>
