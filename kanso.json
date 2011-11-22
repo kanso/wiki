@@ -27,7 +27,6 @@
         "duality-contrib-session-hb": null,
         "datelib": "0.0.1",
         "less-precompiler": ">=1.1.5",
-        "showdown": "0.0.1",
         "handlebars": null,
         "handlebars-helpers": "0.0.2",
         "duality-handlebars": "0.0.2",
