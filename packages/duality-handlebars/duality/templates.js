@@ -14,8 +14,6 @@ catch (e) {
 }
 
 
-handlebars.registerHelper('baseURL', utils.getBaseURL);
-handlebars.registerHelper('isBrowser', utils.isBrowser);
 
 
 /**
@@ -32,6 +30,10 @@ handlebars.registerHelper('isBrowser', utils.isBrowser);
  */
 
 exports.render = function (name, req, context) {
+    handlebars.registerHelper('baseURL', function () {
+        return utils.getBaseURL(req);
+    });
+    handlebars.registerHelper('isBrowser', utils.isBrowser);
     context.userCtx = req.userCtx;
     if (!context.flashMessages && flashmessages) {
         context.flashMessages = flashmessages.getMessages(req);
@@ -39,5 +41,5 @@ exports.render = function (name, req, context) {
     if (!handlebars.templates[name]) {
         throw new Error('Template Not Found: ' + name);
     }
-    return handlebars.templates[name](context);
+    return handlebars.templates[name](context, {});
 };

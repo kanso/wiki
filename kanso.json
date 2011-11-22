@@ -30,7 +30,7 @@
         "showdown": "0.0.1",
         "handlebars": null,
         "handlebars-helpers": "0.0.2",
-        "duality-handlebars": null,
+        "duality-handlebars": "0.0.2",
         "base64": null,
         "async": null
     }
