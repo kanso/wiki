@@ -15,6 +15,12 @@
         "compile": "static/css/wiki.less",
         "remove_from_attachments": true
     },
+    "duality-contrib-session": {
+        "signup": {
+            "text": "Create account",
+            "url": "/create_account/"
+        }
+    },
     "dependencies": {
         "modules": "0.0.8",
         "properties": "0.0.8",
@@ -31,6 +37,7 @@
         "handlebars-helpers": "0.0.2",
         "duality-handlebars": "0.0.2",
         "base64": null,
-        "async": null
+        "async": null,
+        "duality-contrib-session-hb": ">=0.0.2"
     }
 }
