@@ -18,7 +18,7 @@
     "duality-contrib-session": {
         "signup": {
             "text": "Create account",
-            "url": "/create_account/"
+            "url": "/create_account"
         }
     },
     "dependencies": {
