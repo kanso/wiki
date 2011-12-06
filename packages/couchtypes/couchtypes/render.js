@@ -297,7 +297,7 @@ exports.div = function () {
                     '<div class="errors">' +
                         exports.errorHTML(errors) +
                     '</div>' +
-                    '<div class="clear" />' +
+                    '<div class="clear"></div>' +
                 '</div>' +
             '</div>'
         );
@@ -315,7 +315,7 @@ exports.div = function () {
     */
     this.end = function () {
         return (
-                '<div class="final" />' +
+            '<div class="final"></div>' +
             '</div>'
         );
     };

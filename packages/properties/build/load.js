@@ -31,6 +31,16 @@ var load = function (module_cache, doc, settings, name) {
         if (app.hasOwnProperty(k)) {
             if (doc[k] && typeof doc[k] === 'object' &&
                 app[k] && typeof app[k] === 'object') {
+
+                if (Array.isArray(doc[k]) || Array.isArray(app[k])) {
+                    throw new Error(
+                        'Conflicting property values for "' + k + '"' +
+                        ' caused by the "' + name + '" package\n' +
+                        'The properties package cannot merge arrays exported ' +
+                        'from modules. This usually occurs due to exporting ' +
+                        'rewrites from multiple packages.'
+                    );
+                }
                 // extend exisiting object
                 for (var k2 in app[k]) {
                     doc[k][k2] = app[k][k2];
@@ -42,7 +52,7 @@ var load = function (module_cache, doc, settings, name) {
                     logger.debug('New value', app[k].toString());
                     throw new Error(
                         'Conflicting property values for "' + k + '"' +
-                        ' caused by ' + name
+                        ' caused by the "' + name + '" package'
                     );
                 }
                 doc[k] = app[k];

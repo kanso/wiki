@@ -1,6 +1,7 @@
 {
     "name": "datelib",
     "version": "0.0.1",
+    "categories": ["utils"],
     "maintainers": [
         {
             "name": "Caolan McMahon",

@@ -23,7 +23,7 @@
     },
     "dependencies": {
         "modules": "0.0.8",
-        "properties": "0.0.8",
+        "properties": "0.0.9",
         "attachments": null,
         "settings": null,
         "underscore": null,

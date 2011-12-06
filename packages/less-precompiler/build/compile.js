@@ -7,28 +7,35 @@ var less = require('../less.js/lib/less'),
 
 
 function compileLess(project_path, filename, settings, callback) {
-    logger.info('compiling', utils.relpath(filename, project_path));
-    var args = [filename];
-    if (settings.less.compress) {
-        args.unshift('--compress');
-    }
-    var lessc = spawn(__dirname + '/../less.js/bin/lessc', args);
+    // we get a rather cryptic error when trying to compile a file that doesn't
+    // exist, so check early for that and report something sensible
+    path.exists(filename, function (exists) {
+        if (!exists) {
+            return callback(new Error('File does not exist: ' + filename));
+        }
+        logger.info('compiling', utils.relpath(filename, project_path));
+        var args = [filename];
+        if (settings.less.compress) {
+            args.unshift('--compress');
+        }
+        var lessc = spawn(__dirname + '/../less.js/bin/lessc', args);
 
-    var css = '';
-    var err_out = '';
-    lessc.stdout.on('data', function (data) {
-        css += data;
-    });
-    lessc.stderr.on('data', function (data) {
-        err_out += data;
-    });
-    lessc.on('exit', function (code) {
-        if (code === 0) {
-            callback(null, css);
-        }
-        else {
-            callback(new Error(err_out));
-        }
+        var css = '';
+        var err_out = '';
+        lessc.stdout.on('data', function (data) {
+            css += data;
+        });
+        lessc.stderr.on('data', function (data) {
+            err_out += data;
+        });
+        lessc.on('exit', function (code) {
+            if (code === 0) {
+                callback(null, css);
+            }
+            else {
+                callback(new Error(err_out));
+            }
+        });
     });
 };
 

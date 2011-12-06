@@ -1,6 +1,7 @@
 {
     "name": "base64",
     "version": "0.0.1",
+    "categories": ["utils"],
     "maintainers": [
         {
             "name": "Caolan McMahon",

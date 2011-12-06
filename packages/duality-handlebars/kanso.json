@@ -1,6 +1,7 @@
 {
     "name": "duality-handlebars",
     "version": "0.0.2",
+    "categories": ["duality", "templating"],
     "description": "Provides handlebars helpers for common duality patterns",
     "modules": "duality",
     "dependencies": {

@@ -9,7 +9,6 @@
  */
 
 var events = require('events'),
-    users = require('users'),
     db = require('db');
 
 
@@ -139,24 +138,4 @@ exports.info = function (callback) {
             callback(err, resp);
         }
     });
-};
-
-
-/**
- * Creates a new user document with given username and password.
- *
- * @name signup(username, password, callback, options)
- * @param {String} username
- * @param {String} password
- * @param {Array} roles
- * @param {Function} callback
- * @param {Hash} options
- * @api public
- */
-
-exports.signup = function (username, password, roles, callback) {
-    if (!isBrowser()) {
-        throw new Error('signup cannot be called server-side');
-    }
-    users.create(username, password, roles, callback);
 };

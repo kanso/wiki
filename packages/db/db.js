@@ -14,6 +14,12 @@ var events = require('events'),
     _ = require('underscore')._;
 
 
+/**
+ * Tests if running in the browser
+ *
+ * @returns {Boolean}
+ */
+
 function isBrowser() {
     return (typeof(window) !== 'undefined');
 }
@@ -125,6 +131,39 @@ function onComplete(options, callback) {
         }
     };
 }
+
+
+/**
+ * Attempts to guess the database name and design doc id from the current URL
+ *
+ * @returns {Object|null} - An object with 'db', 'design_doc' and 'root'
+ *                          properties, or null for a URL not matching the
+ *                          expected format (perhaps behing a vhost)
+ */
+
+exports.guessCurrent = function (loc) {
+    var loc = loc || window.location;
+
+    /**
+     * A database must be named with all lowercase letters (a-z), digits (0-9),
+     * or any of the _$()+-/ characters and must end with a slash in the URL.
+     * The name has to start with a lowercase letter (a-z).
+     *
+     * http://wiki.apache.org/couchdb/HTTP_database_API
+     */
+
+    var re = /\/([a-z][a-z0-9_\$\(\)\+-\/]*)\/_design\/([^\/]+)\//;
+    var match = re.exec(loc.pathname);
+
+    if (match) {
+        return {
+            db: match[1],
+            design_doc: match[2],
+            root: '/'
+        }
+    }
+    return null;
+};
 
 /**
  *
@@ -527,6 +566,10 @@ exports.newUUID = function (cacheNum, callback) {
 
 function DB(url) {
     this.url = url;
+    // add the module functions to the DB object
+    for (var k in exports) {
+        this[k] = exports[k];
+    }
 };
 
 
@@ -537,6 +580,26 @@ function DB(url) {
 exports.use = function (url) {
     /* Force leading slash; make absolute path */
     return new DB((url.substr(0, 1) !== '/' ? '/' : '') + url);
+};
+
+/**
+ * Attempts to guess the current DB name and return a DB object using that.
+ * Should work reliably unless running behind a virtual host.
+ *
+ * Throws an error if the current database url cannot be detected.
+ */
+
+exports.current = function () {
+    // guess current db url etc
+    var curr = exports.guessCurrent();
+    if (!curr) {
+        throw new Error(
+            'Cannot guess current database URL, if running behind a virtual ' +
+            'host you need to explicitly set the database URL using ' +
+            'db.use(database_url) instead of db.current()'
+        );
+    }
+    return exports.use(curr.db);
 };
 
 
