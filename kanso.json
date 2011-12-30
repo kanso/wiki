@@ -22,8 +22,8 @@
         }
     },
     "dependencies": {
-        "modules": "0.0.8",
-        "properties": "0.0.9",
+        "modules": null,
+        "properties": null,
         "attachments": null,
         "settings": null,
         "underscore": null,
