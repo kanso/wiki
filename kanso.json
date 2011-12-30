@@ -1,43 +1,9 @@
 {
     "name": "wiki",
     "version": "0.0.1",
-    "description": "Basic wiki app",
-    "load": "lib/app",
-    "modules": "lib",
-    "attachments": "static",
-    "duality": { "base_template": "base.html" },
-    "handlebars": {
-        "all_partials": true,
-        "templates": "templates"
-    },
-    "less": {
-        "compress": true,
-        "compile": "static/css/wiki.less",
-        "remove_from_attachments": true
-    },
-    "duality-contrib-session": {
-        "signup": {
-            "text": "Create account",
-            "url": "/create_account"
-        }
-    },
+    "description": "Wiki couchapp with default theme",
     "dependencies": {
-        "modules": null,
-        "properties": null,
-        "attachments": null,
-        "settings": null,
-        "underscore": null,
-        "duality": null,
-        "sanitize": null,
-        "couchtypes": null,
-        "duality-contrib-session-hb": null,
-        "datelib": "0.0.1",
-        "less-precompiler": ">=1.1.5",
-        "handlebars": null,
-        "handlebars-helpers": "0.0.2",
-        "duality-handlebars": "0.0.2",
-        "base64": null,
-        "async": null,
-        "duality-contrib-session-hb": ">=0.0.2"
+        "wiki-core": null,
+        "wiki-theme-default": null
     }
 }
