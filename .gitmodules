@@ -1,0 +1,6 @@
+[submodule "packages/wiki-core"]
+	path = packages/wiki-core
+	url = http://github.com/kanso/wiki-core
+[submodule "packages/wiki-theme-default"]
+	path = packages/wiki-theme-default
+	url = http://github.com/kanso/wiki-theme-default

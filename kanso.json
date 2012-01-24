@@ -1,9 +1,31 @@
 {
     "name": "wiki",
     "version": "0.0.1",
-    "description": "Wiki couchapp with default theme",
+    "description": "A general-purpose wiki for CouchDB",
+    "long_description": "A wiki is a website created by its users. It allows any user to make additions or changes to the site, and can help to keep content up-to-date and relevant.\n\nUsed by the Kanso project for documentation, this Wiki uses an extended version of Markdown for editing pages and features syntax highlighting and page history. Edit's can be attributed to a user and their changes to a page highlighted.",
+    "url": "https://github.com/kanso/wiki",
+    "categories": ["productivity"],
+    "attachments": [
+        "icons",
+        "images"
+    ],
+    "icons": {
+        "16": "icons/wiki_icon_16.png",
+        "48": "icons/wiki_icon_48.png",
+        "96": "icons/wiki_icon_96.png",
+        "128": "icons/wiki_icon_128.png"
+    },
+    "promo_images": {
+        "small": "images/promo_small.png"
+    },
+    "screenshots": [
+        "images/screenshot1.png",
+        "images/screenshot2.png",
+        "images/screenshot3.png"
+    ],
     "dependencies": {
         "wiki-core": null,
-        "wiki-theme-default": null
+        "wiki-theme-default": null,
+        "attachments": null
     }
 }
